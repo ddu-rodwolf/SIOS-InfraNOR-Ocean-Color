@@ -1,17 +1,28 @@
-## ⚠️ Disclaimer
-
-This script is intended for **demonstration and exploratory purposes** only.  
-It uses CHL-a as a biomass proxy with a constant Mixed Layer Depth (MLD). No validation is performed against in situ measurements.
-
-Do **not** use this output for operational decision-making or scientific publication without proper review.
-
 # Estimating Phytoplankton Biomass from OceanColor CHL-a (Svalbard Region)
 
-This Python script visualizes and estimates phytoplankton biomass using **Chlorophyll-a (CHL-a)** data from the [SIOS InfraNOR OceanColor Arctic 1km product](https://thredds.nersc.no/thredds/catalog/sios_infranor_oceancolor/arctic_1km_oceancolor/catalog.html).
+## ⚠️ Disclaimer
 
+This script is intended for **exploratory and demonstrative purposes only**.  
+It estimates phytoplankton biomass by using **Chlorophyll-a (CHL-a)** concentration as a **proxy**, assuming a fixed Mixed Layer Depth (MLD) and no validation against in situ data.
+
+This is a **highly simplified approximation** and does **not reflect realistic Net Primary Production (NPP)**.  
+Accurate NPP estimates require additional environmental inputs, such as:
+
+- Sea Surface Temperature (SST)  
+- Photosynthetically Active Radiation (PAR)  
+- A productivity model (e.g., **VGPM** or **CbPM**)
+
+The dataset used here is derived from the [SIOS InfraNOR OceanColor Arctic 1km product](https://thredds.nersc.no/thredds/catalog/sios_infranor_oceancolor/arctic_1km_oceancolor/catalog.html), which aggregates ocean color observations from sensors such as **Sentinel‑3 OLCI**, **VIIRS**, and **Suomi-NPP**, processed using the **OC-CCI (OC5) algorithm**. It provides CHL-a concentrations, but does **not** include NPP values or other required inputs for true productivity estimates.
+
+> Do **not** use the outputs of this script for operational, ecological, or publication-grade analysis without further model integration and validation.
+
+---
+
+This Python script visualizes and estimates phytoplankton biomass using **CHL-a data** from the OceanColor Arctic 1km product.
 It is meant as a demonstration of using CHL-a as a **biomass proxy**, and includes steps for both:
 - Plotting CHL-a concentrations on a specific date
 - Computing a rough biomass estimate based on a user-defined Mixed Layer Depth (MLD)
+
 
 ## 🌊 Dataset
 
