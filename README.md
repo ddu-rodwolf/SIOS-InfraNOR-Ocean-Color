@@ -18,9 +18,7 @@ It is meant as a demonstration of using CHL-a as a **biomass proxy**, and includ
 2. Visualizes spatial CHL-a concentration on a map
 3. Masks invalid/missing values and hatches them on the plot
 4. Computes total phytoplankton biomass in kilograms using:
-   \[
-   \text{Biomass (mg)} = \text{CHL-a (mg/m³)} \times \text{MLD (m)} \times \text{area (m²)}
-   \]
+    Biomass (mg) = CHL-a (mg/m³) × MLD (m) × area (m²)
 5. Displays biomass estimates directly on the plot
 
 ## 📁 File
