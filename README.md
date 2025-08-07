@@ -49,6 +49,13 @@ It is meant as a demonstration of using CHL-a as a **biomass proxy**, and includ
 4. Print result to terminal
 5. Add biomass text block under plot
 
+## 🗺️ Figure
+<p align="left">
+  <a href="Figures/Chl-a_concentration_Svalbard_01.png">
+    <img src="Figures/Chl-a_concentration_Svalbard_01.png" alt="Sea water Chl-a concentration around Svalbard" width="400"/>
+  </a>
+</p>
+
 ## 📁 File
 
 - `CHL-a-Svalbard_v02.00.py`: Main script
