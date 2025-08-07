@@ -13,6 +13,7 @@ import netCDF4
 import numpy as np
 import matplotlib.pylab as plt
 import matplotlib.colors as colors
+from netCDF4 import num2date
 from matplotlib.patches import Patch
 
 # === PART 1: Load dataset and prepare for plotting ===
@@ -20,12 +21,21 @@ from matplotlib.patches import Patch
 filename = "https://thredds.nersc.no/thredds/dodsC/sios_infranor_oceancolor/arctic_1km_oceancolor/2022/08/20220831_cmems_arctic1km_cmems_oceancolour.nc"
 #filename = os.path.expanduser("~/Downloads/20220831_cmems_arctic1km_cmems_oceancolour.nc")
 nc_ds    = netCDF4.Dataset(filename, "r")
+mld = 20  # mixed layer depth in meters
 
 lat  = nc_ds.variables["latitude"][:]
 lon  = nc_ds.variables["longitude"][:]
 time = nc_ds.variables["time"][:]
 timestep = 0
-mld = 20  # mixed layer depth in meters
+time_var = nc_ds.variables['time']
+time_units = time_var.units
+calendar = getattr(time_var, 'calendar', 'standard')
+
+# Convert the first (or selected) time value
+time_val = time_var[0]  # Use index 0 or your specific index
+date = num2date(time_val, units=time_units, calendar=calendar)
+# Format to a readable string
+formatted_date = date.strftime("%Y-%m-%d")
 
 # Load CHL and handle fill values
 CHL_var  = nc_ds.variables["CHL"]
@@ -46,14 +56,15 @@ missing_mask = CHL4P.mask if np.ma.is_masked(CHL4P) else np.isnan(CHL4P)
 ax.contourf(lon, lat, missing_mask, levels=[0.5, 1.5], hatches=['///'], colors='none', alpha=0)
 
 # Legend for missing data
-legend_elements = [Patch(facecolor='white', edgecolor='black', hatch='///', label='Missing data')]
+legend_elements = [Patch(facecolor='white', edgecolor='black', hatch='///', label='No data')]
 ax.legend(handles=legend_elements, loc='lower right')
 
 # Titles and labels
 ax.set_xlabel('degree East')
 ax.set_ylabel('degree North')
-fig.suptitle('Chlorophyll-a concentration in sea water\n- Copernicus Marine - SIOS OceanColor -\n', 
+fig.suptitle('Chlorophyll-a Concentration  in sea water around Svalbard\n- Copernicus Marine - SIOS OceanColor -', 
              fontsize=12, fontweight='bold', y=0.95)
+plt.title(f"      {formatted_date}")
 
 #plt.show()
 #sys.exit()
